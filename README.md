@@ -1,5 +1,7 @@
 # slack-image
 
+[http://slack-image.rtorr.com/](http://slack-image.rtorr.com/)
+
 Loads the most recent photos from instagram. All API requests are cached for 10 seconds, so sometimes the
 "Load Most Recent" button will return the last request data.
 
