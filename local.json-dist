@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "port": 8021,
+  "client_id": "your instagram client_id",
+  "client_secret": "your instagram access_token",
+  "cache_timeout": 2592000000,
+  "cache_privacy": "private"
+}

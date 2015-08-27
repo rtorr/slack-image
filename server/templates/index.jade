@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title Slack Image
+    meta(charset='utf-8')
+    meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
+    meta(content='yes', name='X-UA-Compatible')
+    meta(content='yes', name='apple-mobile-web-app-capable')
+    link(href="/public/css/styles.css", rel="stylesheet")
+  body
+    div(class="container")
+      header
+        h1(class="header-logo") Instagram!
+        p The most recent photos from Instagram.
+        div(class="header-controls")
+          ul
+            li
+              button(id="js-refresh") Load Most Recent
+            li
+              button(id="js-next-page" disabled) Load More Images
+    div(id="js-main")
+      div(id="js-light-box-container", class="light-box-container")
+        div(class="light-box-container-background js-close")
+        div(class="light-box-image-container")
+          div(class="controls")
+            button(class="light-box-close js-close") close
+            div(class="light-box-left-control-container")
+              button(class="js-light-box-control" data-control="prev")
+                | prev
+            div(class="light-box-right-control-container")
+              button(class="js-light-box-control" data-control="next")
+                | next
+          img(id="js-light-box", class="light-box", src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+          div(class="light-box-info-container")
+            a(id="js-light-box-username", class="light-box-username", target="_blank")
+            span(id="js-light-box-likes", class="light-box-likes")
+          p(id="js-light-box-caption", class="light-box-caption")
+      div(class="container")
+        div(id="js-images")
+    script(async="true", type='text/javascript', src='/public/js/app.js')
