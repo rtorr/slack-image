@@ -74,7 +74,7 @@ server.route(
       method: 'GET',
       path: '/favicon.ico',
       handler: {
-        file: path.join(__dirname, './../../public/images/favicon.ico')
+        file: path.join(__dirname, './../public/images/favicon.ico')
       },
       config: {
         cache: {expiresIn: 86400000, privacy: 'public'}
@@ -82,8 +82,6 @@ server.route(
     }
   ]
 );
-
-console.log(path.join(__dirname, './../../public/images/favicon.ico'))
 
 server.start(function(err) {
   if (err) {
