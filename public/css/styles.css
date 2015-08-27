@@ -127,7 +127,8 @@ header {
 
 .light-box-caption {
   padding: 10px 0;
-  height: 100px;
+  height: 40px;
+  font-size: 12px;
   overflow: scroll;
 }
 
@@ -162,7 +163,7 @@ header {
 .light-box-info-container {
   clear: both;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 10px 0 0 0;
 }
 
 .light-box-left-control-container, .light-box-right-control-container {

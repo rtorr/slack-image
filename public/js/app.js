@@ -15,7 +15,7 @@
 
     main: undefined,
 
-    apiUrl: '/api/tags/nofilter/media/recent',
+    apiUrl: '/api/tags/dogsofinstagram/media/recent',
 
     imageElementList: [],
 
