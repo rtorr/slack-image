@@ -34,7 +34,7 @@
           refreshEl.disabled = false;
           data.data.forEach(function(item, i){
             requestAnimationFrame(function() {
-              _this.createImageElement(_this.imageElementList[i],
+              _this.updateImageElement(_this.imageElementList[i],
                 item.images.low_resolution.url, item.images.standard_resolution.url, item.user.username, item.likes.count, item.caption.text, i)
             });
           });
@@ -80,7 +80,7 @@
       document.getElementById('js-light-box-caption').textContent = imageData.caption.text;
     },
 
-    createImageElement: function(img, thumbnail_src, standard_src, username, likes, caption, index){
+    updateImageElement: function(img, thumbnail_src, standard_src, username, likes, caption, index){
       img.src = thumbnail_src;
       img.addEventListener('click', this.handleChangeLightBoxImage);
       img.dataset.index = index;
