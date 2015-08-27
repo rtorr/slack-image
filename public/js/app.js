@@ -75,7 +75,7 @@
       };
       lightBoxEl.src = imageData.images.standard_resolution.url;
       usernameEl.textContent = username;
-      usernameEl.href = 'https://instagram.com/mikezehner/'+username;
+      usernameEl.href = 'https://instagram.com/'+username;
       document.getElementById('js-light-box-likes').textContent = '♥ ' + imageData.likes.count;
       document.getElementById('js-light-box-caption').textContent = imageData.caption.text;
     },
