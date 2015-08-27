@@ -130,7 +130,7 @@ header {
 
 .light-box-caption {
   padding: 10px 0;
-  height: 40px;
+  max-height: 200px;
   font-size: 12px;
   overflow: scroll;
 }
