@@ -190,6 +190,7 @@ header {
 }
 
 .thumbnail {
+  border: 1px solid #F4F8FF;
   cursor: pointer;
 }
 
