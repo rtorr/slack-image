@@ -114,6 +114,7 @@
       var img = document.createElement('img');
       var div = document.createElement('div');
       div.className = 'thumbnail-container';
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
       img.src = thumbnail_src;
       img.className = 'thumbnail';
       img.addEventListener('click', this.handleChangeLightBoxImage);
@@ -146,7 +147,7 @@
     },
 
     handleBottomOfPage: function(){
-      var bottom = (window.scrollY + window.innerHeight + 10) >= document.body.scrollHeight;
+      var bottom = (window.scrollY + window.innerHeight + 100) >= document.body.scrollHeight;
       if (bottom && this.cache.length > 0){
         this.ajax(App.apiUrl+'?'+this.cache[this.cache.length -1].pagination.next_url.split('&')[1]);
       }
