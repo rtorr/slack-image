@@ -170,8 +170,6 @@
 
       //Set scrolling/window size to load more images
       window.onscroll = this.handleWindowScroll;
-      
-      // "throttle"
       setInterval(function() {
         if(_this.scrolling) {
           _this.scrolling = false;
@@ -180,7 +178,7 @@
         if(window.innerHeight >= document.body.scrollHeight) {
           _this.handleBottomOfPage();
         }
-      }, 100);
+      }, 1000);
     }
 
   };
