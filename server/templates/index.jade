@@ -6,7 +6,11 @@ html
     meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
     meta(content='yes', name='X-UA-Compatible')
     meta(content='yes', name='apple-mobile-web-app-capable')
+    - if (process.env.NODE_ENV != 'PRODUCTION') {
     link(href="/public/css/styles.css", rel="stylesheet")
+    - } else {
+    link(href="/public/dist/styles.css", rel="stylesheet")
+    -}
   body
     div(class="container")
       header
@@ -37,4 +41,8 @@ html
           p(id="js-light-box-caption", class="light-box-caption")
       div(class="container")
         div(id="js-images")
-    script(async="true", type='text/javascript', src='/public/js/app.js')
+    - if (process.env.NODE_ENV != 'PRODUCTION'){
+      script(type='text/javascript', src='/public/js/app.js')
+    - } else {
+      script(async="true", type='text/javascript', src='/public/dist/app.js')
+    - }

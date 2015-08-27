@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "forever": "forever",
+    "build": "./node_modules/uglify-js/bin/uglifyjs --compress --mangle -- ./public/js/app.js > ./public/dist/app.js && cleancss -o ./public/dist/styles.css ./public/css/styles.css",
+    "prod": "NODE_ENV=PRODUCTION forever ./server/index.js"
   },
   "author": "rtorr <rtorruellas@gmail.com> (http://rtorr.com/)",
   "license": "ISC",
@@ -14,8 +16,11 @@
     "nodemon": "^1.4.1"
   },
   "dependencies": {
+    "clean-css": "^3.3.9",
+    "forever": "^0.15.1",
     "hapi": "^8.6.0",
     "jade": "^1.11.0",
-    "nconf": "^0.7.2"
+    "nconf": "^0.7.2",
+    "uglify-js": "^2.4.24"
   }
 }
