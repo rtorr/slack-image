@@ -17,7 +17,6 @@
 
     apiUrl: '/api/tags/dogsofinstagram/media/recent',
 
-
     // Fragile app state  :/
     imageElementList: [],
 
@@ -27,32 +26,24 @@
 
     imageDataCache: [],
 
-    numberOfImages: 0,
-
-    flatten: [],
-
     handleUpdate: function(){
       var _this = App;
       if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
           var data = JSON.parse(httpRequest.responseText);
           _this.cache.push(data);
-          _this.imageDataCache.push(data.data);
-          _this.flatten = App.imageDataCache.reduce(function(a, b){
-            return a.concat(b);
-          });
           nextPageEl.dataset.next_url = data.pagination.next_url;
           nextPageEl.disabled = false;
           refreshEl.disabled = false;
           data.data.forEach(function(item){
+            _this.imageDataCache.push(item);
             _this.creatImageElement(
               item.images.low_resolution.url,
               item.images.standard_resolution.url,
               item.user.username,
               item.likes.count,
               item.caption.text,
-              _this.numberOfImages);
-            _this.numberOfImages = _this.numberOfImages + 1;
+              _this.imageDataCache.length-1);
           });
 
           //Batch updates
@@ -85,18 +76,20 @@
 
     handleRefresh: function(){
       var _this = App;
+      [].forEach.call(document.querySelectorAll('.thumbnail-container'), function(el) {
+        el.removeEventListener('click', _this.handleChangeLightBoxImage, false);
+      });
       _this.imageElementList = [];
       _this.activeIndex = 0;
       _this.cache = [];
       _this.imageDataCache = [];
-      _this.numberOfImages = 0;
       _this.images.innerHTML = '';
       App.ajax(App.apiUrl);
     },
 
     handleChangeLightBoxImage: function(){
       this.dataset ? App.activeIndex = parseInt(this.dataset.index, 10) :  App.activeIndex;
-      var imageData = App.flatten[App.activeIndex];
+      var imageData = App.imageDataCache[App.activeIndex];
       var username = imageData.user.username;
       var lightBoxEl = document.getElementById('js-light-box');
       var usernameEl = document.getElementById('js-light-box-username');
@@ -117,7 +110,7 @@
       img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
       img.src = thumbnail_src;
       img.className = 'thumbnail';
-      img.addEventListener('click', this.handleChangeLightBoxImage);
+      img.addEventListener('click', this.handleChangeLightBoxImage, false);
       img.dataset.index = index;
       img.dataset.large_image = standard_src;
       img.dataset.username = username;
@@ -131,10 +124,10 @@
     handleNextOrPrevious: function(e){
       switch (this.dataset.control){
         case 'next':
-          App.activeIndex = App.activeIndex === App.numberOfImages - 1 ? 0 : App.activeIndex + 1;
+          App.activeIndex = App.activeIndex === App.imageDataCache.length - 1 ? 0 : App.activeIndex + 1;
           break;
         case 'prev':
-          App.activeIndex = App.activeIndex === 0 ? App.activeIndex =  App.numberOfImages - 1 : App.activeIndex - 1;
+          App.activeIndex = App.activeIndex === 0 ? App.activeIndex =  App.imageDataCache.length - 1 : App.activeIndex - 1;
           break;
       }
       App.handleChangeLightBoxImage();
@@ -159,14 +152,14 @@
       this.images = document.getElementById('js-images');
       this.handleRefresh();
 
-      nextPageEl.addEventListener('click', this.handleHeaderControls);
-      refreshEl.addEventListener('click', this.handleRefresh);
+      nextPageEl.addEventListener('click', this.handleHeaderControls, false);
+      refreshEl.addEventListener('click', this.handleRefresh, false);
 
       [].forEach.call(lightBoxControlEl, function(el) {
-        el.addEventListener('click', _this.handleNextOrPrevious);
+        el.addEventListener('click', _this.handleNextOrPrevious, false);
       });
       [].forEach.call(closeEl, function(el) {
-        el.addEventListener('click', _this.handleCloseLightBox);
+        el.addEventListener('click', _this.handleCloseLightBox, false);
       });
 
       //Set scrolling/window size to load more images
